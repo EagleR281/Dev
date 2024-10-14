@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none; /* يمنع التفاعل مع الفيديو */
+        }
+        .overlay {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .overlay img {
+            width: 95px; /* حجم موحد للشعارين */
+            height: 85px; /* ضمان أن يكون الشعارين بنفس الارتفاع */
+            margin: 20px 0; /* إضافة مسافة بين الشعار والنص */
+            cursor: pointer; /* شكل المؤشر عند التحويم */
+        }
+
+        .chat-message {
+            position: fixed;
+            bottom: -100px; /* بداية الرسالة خارج الشاشة */
+            left: 50%;
+            transform: translateX(-50%); /* لتحريكها للوسط */
+            background-color: #23242b; /* لون خلفية الرسالة */
+            color: white; /* لون النص */
+            padding: 15px; /* مسافة داخلية */
+            border-radius: 23px; /* زوايا دائرية */
+            box-shadow: 0px 0px 51px rgb(8, 11, 58);
+            width: 300px; /* عرض الرسالة */
+            text-align: center;
+            font-family: 'Arial', sans-serif; /* نوع الخط */
+            transition: bottom 1.3s ease; /* تأثير الانتقال */
+            z-index: 1000; /* لجعل الرسالة فوق المحتوى */
+        }
+        
+    </style>
+</head>
+<body>
+    <video autoplay loop muted playsinline id="myVideo">
+        <source src="/Desktop 2024.10.14 - 18.19.18.06.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="overlay">
+        <a href="https://discord.gg/jh4Qtzp8rd">
+        <img class="oh1" src="https://cdn.discordapp.com/attachments/1205297616783417405/1295416510520492042/download_14_1.png?ex=670e9223&is=670d40a3&hm=6146e805e057cae947dbde39d57e507e2d33ff4b684d9e7424a0d129d54dc1ac&" alt="Discord Logo">
+        </a>
+        <!-- الشعار الجديد مع رابط حسابك -->
+        <a href="https://discord.com/users/1112638672551034943" target="_blank">
+            <img src="https://cdn.discordapp.com/attachments/1205297616783417405/1295178984795144233/download_17.png?ex=670e5dad&is=670d0c2d&hm=318b1d9097698664a3ddf2f5141dd03beae9c348a196e6e7145da0bfbf9bf21b&" alt="My Account">
+        </a>
+    </div>
+
+    <!-- الرسالة -->
+    <div class="chat-message" id="chatMessage">
+        Welcome<br>
+        I am Khaled, 17 years old.<br>
+        Housing in Riyadh.<br>
+        I love programming and have experience in 5M programming.<br>
+        I also have experience in Discord programming.
+    </div>
+
+    <script>
+        const video = document.getElementById('myVideo');
+        const chatMessage = document.getElementById('chatMessage');
+
+        video.muted = false;
+        video.play().catch(() => {
+            document.body.addEventListener('click', () => {
+                video.muted = false;
+                video.play();
+            }, { once: true });
+        });
+
+        // عرض الرسالة
+        window.onload = function() {
+            setTimeout(() => {
+                chatMessage.style.bottom = '480px'; // تحريك الرسالة لأعلى إلى المنتصف
+            }, 300); // تأخير 0.5 ثانية قبل ظهور الرسالة
+        };
+    </script>
+</body>
+</html>
